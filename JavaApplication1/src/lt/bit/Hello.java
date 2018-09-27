@@ -51,8 +51,20 @@ public class Hello {
         
         char simb = '8';
         System.out.println(simb+1);  //'8' ASCII kodą;
-                
         
+        
+        double A, B, C;
+        A = 2.3;
+        B = 1.9; 
+        C = -13;
+        double d = B*B - 4*A*C;
+        if(d>0){
+            System.out.println((-B-Math.sqrt(d))/(2*A)); 
+            System.out.println((-B+Math.sqrt(d))/(2*A));
+        }
+        else if (d == 0){
+            System.out.println((-B)/(2*A)); 
+        }
+        else System.out.println("Šaknų nėra");
     }
-    
 }
