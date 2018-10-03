@@ -22,9 +22,9 @@ public class Paskaita3 {
         DecimalFormat df = new DecimalFormat("#.####");
         for(int i = 0; i < arr.length-1; i++){
             if(arr[i]>0 && arr[i+1]>0){ // & -- ampersand
-                System.out.println(String.format("%.5g",arr[i]) + "    " + String.format("%.5g",arr[i+1]));
-                System.out.println(df.format(arr[i]) + "    " + df.format(arr[i+1]));
-                System.out.println(Math.round(arr[i]) + "    " + Math.round(arr[i+1]));
+                System.out.println(String.format("%.5g",arr[i]) + "    " + String.format("%.5g",arr[i+1]));  //tyrinėjam apvalinimą;
+                System.out.println(df.format(arr[i]) + "    " + df.format(arr[i+1])); //tyrinėjam apvalinimą;
+                System.out.println(Math.round(arr[i]) + "    " + Math.round(arr[i+1]));  //tyrinėjam apvalinimą;
                 System.out.println("");
             }
         }
@@ -54,42 +54,57 @@ public class Paskaita3 {
         //6. tikrinti ar nesiciklina
         
         
+        int eil = 10;
+        int stulp = 10;
+        int iteracijuSk = 20;
         
-        
-        char[][]GYV = new char[6][6];
+        //generuoja pirminę lentelę
+        char[][]GYV = new char[eil][stulp];
         for (int i = 0; i <GYV.length; i++){
             for(int j=0; j < GYV[i].length; j++){
-                if(Math.random()>0.5){
-                    GYV[i][j] = '0';
-                }
-                else GYV[i][j] = 'x';
+//                if(Math.random()>0.5){
+//                    GYV[i][j] = '0';
+//                }
+//                else GYV[i][j] = 'x';
+                  GYV[i][j] =(Math.random()>0.5)?'0':'x';   //liambda išraiška
             }
         }
         
         
-        for(int i = 0; i < 10; i++){
-            System.out.println(i + "  -------------------------------------");
+        char [][][] archyvas = new char [iteracijuSk][eil][stulp];
+        
+        
+        //prasideda 10 iteracijų ciklas
+        for(int i = 0; i < iteracijuSk; i++){
+            archyvas[i] = GYV;
+            System.out.println(i+1 + "  -------------------------------------");
             spausdink_GYV(GYV);
-            char [][] GYVNew = gyvenimas(GYV);
-            if(Compare(GYV, GYVNew)){
-                System.out.println("Prieš tai buvęs pasaulis buvo toks pats!");
-                i = 12;
-                
+            char [][] GYVNew = gyvenimas(GYV, eil, stulp);
+            if(Compare(GYV, GYVNew)){  //jeigu prieš tai buvusi lentelė tokia pati -- prasideda kartojimasis
+                System.out.println(i+2 + " -- Prieš tai buvęs pasaulis buvo toks pats!");
+                break;
+            }
+            else  if(Ar_yra_archyve(archyvas, GYVNew)){
+                System.out.println(i+2 + " -- Užsiciklino!");
+                break;
             }
             else {
-                GYV = gyvenimas(GYV);
-            }
+                    GYV = GYVNew;
+                 }
+            
+           
+            
         }
         
        
-        
+     //netikrinau, ar nesikartoja kas kelias lenteles cikliškai;   
         
         
         
         
     }
     
-    
+    //f-ja spausdina lentelę
     public static void spausdink_GYV(char [][] GYV){
         for (int i = 0; i <GYV.length; i++){
             for(int j=0; j < GYV[i].length; j++){
@@ -100,25 +115,22 @@ public class Paskaita3 {
         } 
     }
     
+    //fja lygina ar dvi lentelės yra vienodos;
     public static boolean Compare(char[][] GYV, char[][] GYVNew){
-        boolean verte = true;
         for (int i = 0; i < GYV.length; i++){
             for(int j=0; j < GYV[i].length; j++){
                 if(GYV[i][j] != GYVNew[i][j]){
-                    verte = false;
-//                    j = GYV[i].length + 1;
-//                    i = GYV.length+1;
-                      break;  
+                    return false;
                 }
             }
         } 
-        return verte;
+        return true;
     }
     
-    
-    public static char [][] gyvenimas(char [][] GYV){
+    //vienas gyvenimo ciklas :D
+    public static char [][] gyvenimas(char [][] GYV, int eil, int stulp){
         int kiekis;
-        char[][]GYVNew = new char[6][6];
+        char[][]GYVNew = new char[eil][stulp];
         for (int i = 0; i <GYV.length; i++){
             for(int j=0; j < GYV[i].length; j++){
                 kiekis = 0;
@@ -141,6 +153,15 @@ public class Paskaita3 {
             //System.out.println("");
         }
         return GYVNew;
+    }
+    
+    public static boolean Ar_yra_archyve(char [][][] archyvas, char[][]GYV){
+        int n = archyvas.length;
+        for (int i = 0; i < n; i++){
+            if (Compare(archyvas[i], GYV))
+                return true;
+        }
+        return false;
     }
     
 }
