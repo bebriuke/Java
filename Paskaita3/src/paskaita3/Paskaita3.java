@@ -95,11 +95,7 @@ public class Paskaita3 {
            
             
         }
-        
        
-     //netikrinau, ar nesikartoja kas kelias lenteles cikliškai;   
-        
-        
         
         
     }
@@ -148,7 +144,7 @@ public class Paskaita3 {
                 //System.out.print(kiekis+" ");
                 if (GYV[i][j] == '0' && kiekis == 3) GYVNew[i][j]= 'x';
                 else if(GYV[i][j] == 'x' && (kiekis < 2 || kiekis >3)) GYVNew[i][j]= '0';
-                else GYVNew[i][j] = GYV[i][j];
+                     else GYVNew[i][j] = GYV[i][j];
             }
             //System.out.println("");
         }
