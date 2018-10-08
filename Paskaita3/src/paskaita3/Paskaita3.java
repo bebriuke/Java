@@ -78,13 +78,13 @@ public class Paskaita3 {
         for(int i = 0; i < iteracijuSk; i++){
             archyvas[i] = GYV;
             System.out.println(i+1 + "  -------------------------------------");
-            spausdink_GYV(GYV);
+            spausdinkGYV(GYV);
             char [][] GYVNew = gyvenimas(GYV, eil, stulp);
-            if(Compare(GYV, GYVNew)){  //jeigu prieš tai buvusi lentelė tokia pati -- prasideda kartojimasis
+            if(compare(GYV, GYVNew)){  //jeigu prieš tai buvusi lentelė tokia pati -- prasideda kartojimasis
                 System.out.println(i+2 + " -- Prieš tai buvęs pasaulis buvo toks pats!");
                 break;
             }
-            else  if(Ar_yra_archyve(archyvas, GYVNew)){
+            else  if(arYraArchyve(archyvas, GYVNew)){
                 System.out.println(i+2 + " -- Užsiciklino!");
                 break;
             }
@@ -101,7 +101,7 @@ public class Paskaita3 {
     }
     
     //f-ja spausdina lentelę
-    public static void spausdink_GYV(char [][] GYV){
+    public static void spausdinkGYV(char [][] GYV){
         for (int i = 0; i <GYV.length; i++){
             for(int j=0; j < GYV[i].length; j++){
                 System.out.print(GYV[i][j]+" ");
@@ -112,7 +112,7 @@ public class Paskaita3 {
     }
     
     //fja lygina ar dvi lentelės yra vienodos;
-    public static boolean Compare(char[][] GYV, char[][] GYVNew){
+    public static boolean compare(char[][] GYV, char[][] GYVNew){
         for (int i = 0; i < GYV.length; i++){
             for(int j=0; j < GYV[i].length; j++){
                 if(GYV[i][j] != GYVNew[i][j]){
@@ -151,10 +151,10 @@ public class Paskaita3 {
         return GYVNew;
     }
     
-    public static boolean Ar_yra_archyve(char [][][] archyvas, char[][]GYV){
+    public static boolean arYraArchyve(char [][][] archyvas, char[][]GYV){
         int n = archyvas.length;
         for (int i = 0; i < n; i++){
-            if (Compare(archyvas[i], GYV))
+            if (compare(archyvas[i], GYV))
                 return true;
         }
         return false;
