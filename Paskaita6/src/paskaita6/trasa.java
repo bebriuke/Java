@@ -9,20 +9,23 @@ package paskaita6;
  *
  * @author Jurate Valatkevicien
  */
-public class trasa /*extends Automobilis*/ {
-    
-
+public class trasa /*extends Automobilis*/{
+        
     private int autoSk;
     private int finisas;
-    private Automobilis [] MAS;// = new Automobilis [autoSk];
+    
+    //private ArrayList<Card> cards;
+    private Automobilis [] MAS = new Automobilis[autoSk];// = new Automobilis [autoSk];
     
     public trasa(String name, int sk, int fin){
         //super (name);
         autoSk = sk;
         finisas = fin;
         for(int i = 0; i < sk; i++){
-            MAS[i] = new Automobilis(name + i);
+            MAS[i] = new Automobilis("vardas");
         }
+        //MAS = new Automobilis(name);//????
+        
         
     } 
     

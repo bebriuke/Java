@@ -9,19 +9,19 @@ package javaapplication8;
  *
  * @author Jurate Valatkevicien
  */
-public class Zvirblis extends Paukstis implements Skraiduolis{
+public class Eziukas extends Gyvunas implements Skraiduolis {
     
-    
-    
-   
+    public void skristi(){
+        System.out.println("Skrenduuuuuu!..");
+    }
     
    
     public void pakilti(int aukstis){
-        System.out.println("Pakilau! " + aukstis);
+        System.out.println("Pakilau!!!!!!!  " + aukstis);
     };
     
     public void nutupti(){
-        System.out.println("Nutūpiau!");
+        System.out.println("Nutūpiau!!!!!!");
     };
     
 }

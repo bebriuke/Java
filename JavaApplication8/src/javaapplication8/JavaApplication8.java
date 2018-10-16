@@ -28,19 +28,23 @@ public class JavaApplication8 {
         //arba
         
         SnekantisZvirblis bird = new SnekantisZvirblis();
-        Gyvunas [] zoo = {obj, cat, bird, new Zvirblis()};
+        Gyvunas [] zoo = {obj, cat, bird, new Zvirblis(), new Eziukas(), new Kiaule(), new Balandis()};
         
         
         
         
 //        zoo[0].rekti();
 //        zoo[1].rekti();
-
+        
+        
 
         for(Gyvunas g: zoo){   //foreach :)  negarantuoja eiliškumo;
             g.rekti();
-            if(g instanceof Zvirblis){
-                ((Zvirblis)g).skristi();
+            System.out.println(g.getClass().getName());
+            if(g instanceof Skraiduolis){
+                ((Skraiduolis)g).skristi();
+                ((Skraiduolis)g).pakilti(10);
+                ((Skraiduolis)g).nutupti();
             }
         }
         
