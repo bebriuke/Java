@@ -83,7 +83,32 @@ public class JavaApplication12 {
         
         pasižiūrėti inner ir anonimines klases (arba vėliau :D
         */
+        System.out.println("--------------");
+        System.out.println("");
+        String bla = "\uD83D\uDD74";
+        System.out.println(bla);
         
+        System.out.println("");
+        Test t1 = new Test (10);
+        System.out.println(t1);
+        Test t2 = new Test (10);
+        System.out.println(t2);
+        
+        System.out.println("");
+        if (t1 == t2) System.out.println ("lygu");
+        else System.out.println("nelygu"); 
+        System.out.println("************");
+        
+        if (t1.equals(t2)) System.out.println ("lygu");
+        else System.out.println("nelygu");
+        
+        
+        Object o = "Labas";
+        if (t1.equals(o)) System.out.println ("lygu");
+        else System.out.println("nelygu");
+
+        
+                
     }
     
     public static int skaiciuoti(int i){
