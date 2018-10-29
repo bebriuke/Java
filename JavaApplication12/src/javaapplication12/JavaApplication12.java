@@ -106,6 +106,11 @@ public class JavaApplication12 {
         Object o = "Labas";
         if (t1.equals(o)) System.out.println ("lygu");
         else System.out.println("nelygu");
+        
+        
+        /*********************************************************/
+        
+        System.out.println(Direction.LEFT);
 
         
                 
