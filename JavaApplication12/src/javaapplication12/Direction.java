@@ -10,5 +10,5 @@ package javaapplication12;
  * @author Jurate Valatkevicien
  */
 public enum Direction {
-    LEFT, RIGHT, UP, DOWN
+    LEFT, RIGHT, UP, DOWN    //Direction objektas turės vieną iš šitų reikšmių arba NULL; su Direction galiu naudoti foreach;
 }

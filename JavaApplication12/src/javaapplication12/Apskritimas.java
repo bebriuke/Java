@@ -16,11 +16,18 @@ public class Apskritimas {
     private static int kiekis = 0;
    
     public Apskritimas(float x, float y, float rr){
+       // public static int move(out aa=0);
+       // static{
+       //     //čia gali iškviesti objektą ir dar visokias kitokias gudrybes
+      //      mainCount = 10;
+       // }//static blokų gali būti ne vienas; sudėtingas priskyrimas
         this.x = x;
         this.y = y;
         r = rr;
         kiekis++;
     }
+    
+    
 
     public float getX() {
         return x;
