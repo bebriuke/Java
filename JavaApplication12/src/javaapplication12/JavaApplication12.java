@@ -111,9 +111,21 @@ public class JavaApplication12 {
         /*********************************************************/
         
         System.out.println(Direction.LEFT);
+        System.out.println("----------------------------------");
 
-        
-                
+        MyString kas = new MyString("Labas");
+        System.out.println(kas.toString());
+        kas.add(" rytas");
+        System.out.println(kas.toString());
+        kas.add(", mano Saule!");
+        System.out.println(kas.toString());
+        kas.remove(5, 3);
+        System.out.println(kas.toString());
+        MyString m1= new MyString("Labas");
+        m1.add(" pasauli");
+        System.out.println(m1);
+        m1.remove(4, 4);
+        System.out.println(m1);
     }
     
     public static int skaiciuoti(int i){
