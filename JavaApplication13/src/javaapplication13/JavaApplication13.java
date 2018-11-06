@@ -24,7 +24,7 @@ public class JavaApplication13 {
         // TODO code application logic here
         
         //zmoniu listas su vardais pavardem ir gimimo metais
-        List <Zmogus> myList = new ArrayList <Zmogus>(); //ctrl+shift+i
+        List <Zmogus> myList = new ArrayList <>(); //ctrl+shift+i
         //10 žmonių su skirtingais vardais pavardė. Keli vardai tie patys, metai ir pavardės skiriasi;
         //atspausdinam;
         //surūšiuojam pagal vardą (be metodo sort), jei vardai vienodi, pagal pavardę, atspausdinti;

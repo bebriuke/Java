@@ -49,7 +49,7 @@ public class Zmogus {
 
     @Override
     public String toString() {
-        return "Zmogus{" + "vardas=" + vardas + ", pavarde=" + pavarde + ", gimimoMetai=" + gimimoMetai +'}'+"\n";
+        return "Zmogus{" + "vardas=" + vardas + ", pavarde=" + pavarde + ", gimimoMetai=" + gimimoMetai +'}'+'\n';
     }
     
     
