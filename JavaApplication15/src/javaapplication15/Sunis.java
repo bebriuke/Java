@@ -5,25 +5,19 @@
  */
 package javaapplication15;
 
-import java.util.Objects;
-
 /**
  *
  * @author Jurate Valatkevicien
  */
-public class OneHash {
-    private String s;
-    public OneHash(String s){
-        this.s = s;
+public class Sunis extends Gyvunai{
+    public Sunis(){
+        
     }
 
     @Override
     public String toString() {
-        return "OneHash{" + "s=" + s + ", hashCode: "+s.hashCode()+'}';
+        return "Sunis{" + '}';
     }
-
-    @Override
-    public int hashCode(){
-        return 1;
-    }
+    
+    
 }

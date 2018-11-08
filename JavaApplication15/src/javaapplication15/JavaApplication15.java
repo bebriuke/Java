@@ -7,8 +7,11 @@ package javaapplication15;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -21,31 +24,38 @@ public class JavaApplication15 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String tekstas = "Didelės žalos vaismedžiams Didelės žalos vaismedžiams Didelės "
-                + "žalos vaismedžiamsDidelės žalos vaismedžiamsDidelės žalos vaismedžiams"
-                + "ypač jauniems pridaro pelės "
-                + "Šie graužikai nenuilstamai ieško maisto tad ne išimtis ir "
-                + "žiemos periodas Jei zuikių paliktas žaizdas ant kamienų galima "
-                + "pastebėti žiemą tai pelių darbo rezultatai matomi tik pavasarį "
-                + "Rudenį graužikai būriuojasi ten kur palankios žiemojimo sąlygos "
-                + "Pirmiausia juos vilioja namų rūsiai sandėliukai į krūvas sumestos "
-                + "piktžolės lapai kitos sodo atliekos ir žinoma komposto dėžė "
-                + "Žiemą kai laikinajame būste maistas baigiasi arba negailestingas "
-                + "šeimininkas išprašo iš pagalbinių patalpų pelės pasklinda įvairiomis "
-                + "kryptimis rausdamos tunelius sniege Storas baltas sluoksnis slepia "
-                + "nuo kačių pelėdų ir kitų grobuonių tad jos jaučiasi saugios Peles "
-                + "vilioja mėgiamas patiekalas stora sultinga jaunų medelių žievė "
-                + "apatinėje kamieno dalyje O jei jos randa nepasodintų tik įkastų "
-                + "pavasario laukiančių sodinukų pasijunta kaip tikroje puotoje "
-                + "apgraužia liaunus kamienus nuo šaknelių iki viršūnėlių "
-                + "Skaniausia šiems gyvūnams yra obelų ir abrikosų žievė";
+        
+    
+        
+        List <Gyvunai> gyv = new ArrayList(Arrays.asList());
+        
+        Kates kate = new Kates();
+        Sunis suo = new Sunis();
+        Gyvunai ggg = new Gyvunai();
+        
+        gyv.add(suo);
+        gyv.add(kate);
+        gyv.add(ggg);
+        
+        System.out.println(gyv.toString());
+        System.out.println("");
+        for(int i = 0; i < gyv.size(); i++){
+            System.out.println(gyv.get(i));
+        }
+        
+        System.out.println("/////////////////////////////////");
+        
+        String tekstas = "labas labas rytas labas mano saule saule saule";
         String [] temp = tekstas.split(" ");
-        List zodziai = new ArrayList(Arrays.asList(temp));
+        List <String> zodziai = new ArrayList(Arrays.asList(temp));
+        zodziai.add(new String("Didelės"));
+        zodziai.add(new String("Didelės"));
         zodziai.add(new String("Didelės"));
         
         System.out.println(zodziai);
         System.out.println(zodziai.size());
         
+              
         System.out.println("************************");
         Set pol = new HashSet();
         for(int i = 0; i < zodziai.size(); i++){
@@ -54,6 +64,62 @@ public class JavaApplication15 {
         System.out.println(pol);
         System.out.println(pol.size());
         System.out.println("************************");
+        
+        
+        
+       
+        
+        Map kiekiai = new HashMap();
+        for(Object kas: pol) {
+            int kiekis = 0;
+            for(int j = 0; j < zodziai.size(); j++){
+                if(kas.equals(zodziai.get(j))) kiekis++;
+            }
+            kiekiai.put(kas, kiekis);
+            
+            System.out.println(kas + " " + kiekis+" "+Collections.frequency(zodziai, kas));   //VALIO!!!!!
+        }
+        System.out.println(kiekiai);
+        
+        
+        //optimizavimas:
+//        Map kkiekiai = new HashMap();
+//        for(int i = 0; i < zodziai.size(); i++){
+//            //String z = (String)zodziai.get(i);
+//            Integer kkiekis = (Integer)kkiekiai.get(zodziai.get(i));
+//            if(kkiekis == null) kkiekis = 0;
+//            kkiekis++;
+//            //System.out.println("z = "+z+"  kkiekis = " + kkiekis);
+//            kkiekiai.put(zodziai.get(i), kkiekis);
+//        }
+
+//        Map <String, Integer> kkiekiai = new HashMap<>();// tuščias <>, kai sutampa
+//        for(int i = 0; i < zodziai.size(); i++){
+//            String z = (String)zodziai.get(i);
+//            Integer kkiekis = kkiekiai.get(z);
+//            if(kkiekis == null) kkiekis = 0;
+//            kkiekis++;
+//            //System.out.println("z = "+z+"  kkiekis = " + kkiekis);
+//            kkiekiai.put(z, kkiekis);
+//        }
+
+        Map <String, Integer> kkiekiai = new HashMap<>();// tuščias <>, kai sutampa
+        //kkiekiai.
+        for(String z: zodziai){    //prirašytie prie zidziai Listo <String>
+            Integer kkiekis = kkiekiai.get(z);
+            if(kkiekis == null) kkiekis = 0;
+            kkiekiai.put(z, ++kkiekis);
+        }
+
+
+        System.out.println("**********************");
+        System.out.println(kkiekiai);
+        System.out.println(kkiekiai.values());
+        
+        for(String o: kkiekiai.keySet()){
+            System.out.println(o+": "+kkiekiai.get(o));
+        }
+        System.out.println("oooo----------------------------");
         
         
         System.out.println(new Object().hashCode());
@@ -69,6 +135,7 @@ public class JavaApplication15 {
         System.out.println(oh);
         System.out.println("************************");
 
+           
     }
     
 }
