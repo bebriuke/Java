@@ -1,6 +1,9 @@
 package lt.bit.db;
 
+import java.math.BigDecimal;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,9 +18,11 @@ public class DB {
     static {
         Person p;
         try {
-            p = new Person("PirmasVardas", "PirmaPavarde", "2006-10-08");
+            DateFormat format =  new SimpleDateFormat("yyyy-MM-dd");
+            
+            p = new Person("PirmasVardas", "PirmaPavarde", format.parse("2006-10-08"), new BigDecimal("1000"));
             list.add(p);
-            p = new Person("AntrasVardas", "AntraPavarde", "2004-03-12");
+            p = new Person("AntrasVardas", "AntraPavarde", format.parse("2004-03-12"), new BigDecimal("2000"));
             list.add(p);
         } catch (ParseException ex) {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);

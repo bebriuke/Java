@@ -1,6 +1,7 @@
 package crudmem;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,20 +39,33 @@ public class EditPerson extends HttpServlet {
         }
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        System.out.println(request.getParameter("birthDate")+"********************************************");
-        System.out.println(request.getParameter("birthDate").getClass());
         String birthDateStr = request.getParameter("birthDate");
         DateFormat format =  new SimpleDateFormat("yyyy-MM-dd");
-        Date birthDate = format.parse(birthDateStr);
-       
+        if (birthDateStr == null) birthDateStr = "";
+        Date birthDate = null;
+        try{
+            birthDate = format.parse(birthDateStr);
+        } catch (Exception ex){
+            
+        }
+      
+        
+        String temp = request.getParameter("salary");     
+        BigDecimal salary = null;
+        if (!"".equals(temp)) {
+            if (temp.contains(",")) temp = temp.replace(",",".");
+            salary = new BigDecimal(temp);
+        }
+        
         
         if (id != null) {
             Person p = DB.getById(id);
             p.setFirstName(firstName);
             p.setLastName(lastName);
             p.setBirthDate(birthDate);
+            p.setSalary(salary);
         } else {
-            Person p = new Person(firstName, lastName, birthDateStr);
+            Person p = new Person(firstName, lastName, birthDate, salary);
             DB.add(p);
         }
         response.sendRedirect("index.jsp");
@@ -106,4 +120,5 @@ public class EditPerson extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+   
 }

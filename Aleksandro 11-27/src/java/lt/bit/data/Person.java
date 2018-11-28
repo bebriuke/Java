@@ -1,8 +1,6 @@
 package lt.bit.data;
 
 import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -15,19 +13,18 @@ public class Person {
     private String firstName;
     private String lastName;
     private Date birthDate;  //1999-02-03
-    DateFormat format =  new SimpleDateFormat("yyyy-MM-dd");
     private BigDecimal salary;
 
     public Person() {
         this.id = ++nextId;
     }
 
-    public Person(String firstName, String lastName, String data) throws ParseException {
+    public Person(String firstName, String lastName, Date birthDate, BigDecimal salary) {
         this.id = ++nextId;
         this.firstName = firstName;
         this.lastName = lastName;
-        birthDate = format.parse(data);
-        //this.salary = salary;
+        this.birthDate = birthDate;
+        this.salary = salary;
     }
 
     public Integer getId() {
@@ -38,14 +35,13 @@ public class Person {
         
         return birthDate; 
     }
-
+    public void setBirthDate(Date birthDate)  {
+        this.birthDate = birthDate;
+    }
+    
     public BigDecimal getSalary() {
         return salary;
-    }
-
-    public void setBirthDate(Date data) throws ParseException  {
-        this.birthDate = data;
-    }
+    }    
 
     public void setSalary(BigDecimal salary) {
         this.salary = salary;

@@ -10,6 +10,23 @@
         <title>List of persons</title>
     </head>
     <body>
+        
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                text-align: center;
+                background-color:white;
+            }
+            table{
+                width: 40%;
+            }
+            
+            th {
+                background-color:gray;
+            }
+        </style>
+        
+        
         <% DateFormat format =  new SimpleDateFormat("yyyy-MM-dd"); %>
         <table>
             <%
@@ -19,7 +36,8 @@
                 <td><%=p.getId()%></td>
                 <td><%=p.getFirstName()%></td>
                 <td><%=p.getLastName()%></td>
-                <td><%=format.format(p.getBirthDate())%></td>
+                <td><%=p.getBirthDate() != null ? format.format(p.getBirthDate()) : ""%></td>
+                <td><%=p.getSalary() != null ? p.getSalary().toString(): ""  %></td>
                 <td><a href="edit.jsp?id=<%=p.getId()%>">Edit</a></td>
                 <td><a href="delete?id=<%=p.getId()%>">Delete</a></td>
             </tr>

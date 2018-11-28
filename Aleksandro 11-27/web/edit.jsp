@@ -24,8 +24,8 @@
             <input type="hidden" name="id" value="<%=(p != null) ? p.getId() : "" %>" />
             First name: <input type="text" name="firstName" value="<%=(p != null) ? p.getFirstName() : "" %>" /><br/>
             Last name: <input type="text" name="lastName" value="<%=(p != null) ? p.getLastName() : "" %>" /><br/>
-            Date of Birthday: <input type="date" name="birthDate" value="<%=(p != null) ? format.format(p.getBirthDate()) : "" %>" /><br/>
-           
+            Date of Birthday: <input type="date" name="birthDate" value="<%=(p != null) && p.getBirthDate() != null ? format.format(p.getBirthDate()) : "" %>" /><br/>
+            Salary: <input type="text" name="salary" value="<%=(p != null)&&(p.getSalary() != null) ? p.getSalary().toString() : "" %>" /><br/>
             
             <input type="submit" value="Save" /><br/>
             <a href="index.jsp">Cancel</a><br/>
