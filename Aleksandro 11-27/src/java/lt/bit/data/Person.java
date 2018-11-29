@@ -1,8 +1,9 @@
 package lt.bit.data;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Person {
@@ -12,11 +13,15 @@ public class Person {
     private Integer id;
     private String firstName;
     private String lastName;
-    private Date birthDate;  //1999-02-03
+    private Date birthDate;
     private BigDecimal salary;
+    private List<Address> addresses;
+    private List<Contact> contacts; //???
 
     public Person() {
         this.id = ++nextId;
+        addresses = new ArrayList<>();
+        contacts = new ArrayList<>();
     }
 
     public Person(String firstName, String lastName, Date birthDate, BigDecimal salary) {
@@ -25,29 +30,23 @@ public class Person {
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.salary = salary;
+        addresses = new ArrayList<>();
+        contacts = new ArrayList<>();
+    }
+
+    public Person(Integer id, String firstName, String lastName, Date birthDate, BigDecimal salary) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.salary = salary;
+        addresses = new ArrayList<>();
+        contacts = new ArrayList<>();
     }
 
     public Integer getId() {
         return id;
     }
-
-    public Date getBirthDate() {
-        
-        return birthDate; 
-    }
-    public void setBirthDate(Date birthDate)  {
-        this.birthDate = birthDate;
-    }
-    
-    public BigDecimal getSalary() {
-        return salary;
-    }    
-
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
-    }
-    
-    
 
     public void setId(Integer id) {
         this.id = id;
@@ -73,6 +72,34 @@ public class Person {
         this.lastName = lastName;
     }
 
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthDate=" + birthDate + ", salary=" + salary + '}';
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -88,11 +115,5 @@ public class Person {
         final Person other = (Person) obj;
         return Objects.equals(this.id, other.id);
     }
-
-    @Override
-    public String toString() {
-        return "Person{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthDate=" + birthDate + ", salary=" + salary + '}';
-    }
-
 
 }

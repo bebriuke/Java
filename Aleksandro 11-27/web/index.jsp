@@ -18,7 +18,7 @@
                 background-color:white;
             }
             table{
-                width: 40%;
+                width: 100%;
             }
             
             th {
@@ -40,6 +40,8 @@
                 <td><%=p.getSalary() != null ? p.getSalary().toString(): ""  %></td>
                 <td><a href="edit.jsp?id=<%=p.getId()%>">Edit</a></td>
                 <td><a href="delete?id=<%=p.getId()%>">Delete</a></td>
+                <td><a href="adress.jsp?id=<%=p.getId()%>">Adresai</a></td>
+                <td><a href="adress.jsp?id=<%=p.getId()%>">Kontaktai</a></td>
             </tr>
             <%
                 }
