@@ -66,8 +66,8 @@
         <form action="editContact" method="POST">
             <input type="hidden" name="id" value="<%=(p != null) ? p.getId() : "" %>" />
             <input type="hidden" name="ida" value="<%=p != null && aa != null ? ida : "" %>" />
-            Type: <input type="text" name="address" value="<%=aa != null &&  aa.getType()!= null ? aa.getType(): "" %>" /><br/>
-            Address: <input type="text" name="city" value="<%=aa != null &&  aa.getAddres()!= null ? aa.getAddres(): "" %>" /><br/>
+            Type: <input type="text" name="type" value="<%=aa != null &&  aa.getType()!= null ? aa.getType(): "" %>" /><br/>
+            Address: <input type="text" name="contact" value="<%=aa != null &&  aa.getAddres()!= null ? aa.getAddres(): "" %>" /><br/>
             
             <input type="submit" value="Save" /><br/>
             <a href="adress.jsp?id=<%=p.getId()%>">Cancel</a><br/>

@@ -11,18 +11,20 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 @WebServlet(name = "EditPerson", urlPatterns = {"/edit"})
 public class EditPerson extends HttpServlet {
+    
+    private static final Log log = LogFactory.getLog(EditPerson.class);//logingo įterpimas 12-18
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,9 +40,14 @@ public class EditPerson extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String idString = request.getParameter("id");
         Integer id = null;
+        log.info(idString);
+        //info > fatal > error > warn > info > debug > trace -- svarbumo lygmenys
+        //spausdina info ir svarbesnius pagal defaltą
+        //išsiaiškinti, kaip pakeisti konfigūraciją, kad spausdintų visus
         try {
             id = new Integer(idString);
         } catch (Exception ex) {
+            log.error("Blogas id", ex);
         }
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
@@ -89,7 +96,7 @@ public class EditPerson extends HttpServlet {
            // emf.close();
             
         }catch (Exception ex){
-            System.out.println("Klaida");
+            log.error("Klaida", ex);
         } finally{
             EMF.returnEntityManager(em); //uždarom
         }

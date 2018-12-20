@@ -42,7 +42,7 @@ public class Person {
     private BigDecimal salary;
     @OneToMany(mappedBy = "p")
     private List<Address> addresses;
-    @OneToMany
+    @OneToMany(mappedBy = "p")
     private List<Contacts> contacts; //???
     //kintamasis, kurio nėra duomenų bazėje
    // @Transient
@@ -50,7 +50,7 @@ public class Person {
 
     public Person() {
         addresses = new ArrayList<>();
-        //contacts = new ArrayList<>();
+        contacts = new ArrayList<>();
     }
 
     
@@ -61,7 +61,7 @@ public class Person {
         this.birthDate = birthDate;
         this.salary = salary;
         addresses = new ArrayList<>();
-        //contacts = new ArrayList<>();
+        contacts = new ArrayList<>();
         
     }
 

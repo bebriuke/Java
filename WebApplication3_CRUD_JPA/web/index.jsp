@@ -105,6 +105,7 @@
             <td><a href="edit.jsp?id=<%=p.getId()%>">Edit</a></td>
             <td><a href="delete?id=<%=p.getId()%>">Delete</a></td>
             <td><a href="adress.jsp?id=<%=p.getId()%>">Adresai</a></td>
+            <td><a href="contact.jsp?id=<%=p.getId()%>">Kontaktai</a></td>
         </tr>
         <%
             }

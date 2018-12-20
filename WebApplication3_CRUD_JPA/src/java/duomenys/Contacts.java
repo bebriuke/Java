@@ -19,7 +19,6 @@ public class Contacts {
 //    private Integer personId;
     //nereikia, sutampa pavadinimai
     private String type;
-    //nereikia, sutampa pavadinimai
     @Column(name="contact")
     private String addres;
     @ManyToOne
@@ -56,6 +55,7 @@ public class Contacts {
     public void setAddres(String addres) {
         this.addres = addres;
     }
+    
 
     public Person getP() {
         return p;
