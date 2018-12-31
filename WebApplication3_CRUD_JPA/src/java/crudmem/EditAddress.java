@@ -71,8 +71,11 @@ public class EditAddress extends HttpServlet {
                 
             } else {
                 Person p = em.find(Person.class, id);
-                a = new Address(adresas, miestas, pastoKodas);  
-                a.setP(p);
+                a = new Address(); 
+                a.setAddress(adresas);
+                a.setCity(miestas);
+                a.setPostalCode(pastoKodas);
+                a.setPerson(p);
                 em.persist(a);
             }
             EMF.commitTransaction(tx);

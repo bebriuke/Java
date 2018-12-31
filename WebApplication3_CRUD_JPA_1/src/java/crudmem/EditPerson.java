@@ -85,11 +85,7 @@ public class EditPerson extends HttpServlet {
                 p.setSalary(salary);            
                 //em.persist(p);  nebūtinas, hipernatas pats surašys
             } else {
-                p = new Person();   
-                p.setFirstName(firstName);
-                p.setLastName(lastName);
-                p.setBirthDate(birthDate);
-                p.setSalary(salary);
+                p = new Person(firstName, lastName, birthDate, salary);    
                 em.persist(p);
             }
 

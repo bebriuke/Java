@@ -5,7 +5,7 @@
  */
 package crudmem;
 
-import duomenys.Contact;
+import duomenys.Contacts;
 import duomenys.EMF;
 import java.io.IOException;
 import javax.persistence.EntityManager;
@@ -52,7 +52,7 @@ public class DeleteContact extends HttpServlet {
         EntityManager em = EMF.getEntityManager();
         try {    
             EntityTransaction tx = EMF.getTransaction(em);
-            Contact c = em.find(Contact.class, ida);
+            Contacts c = em.find(Contacts.class, ida);
             em.remove(c);
             EMF.commitTransaction(tx);
         } catch (Exception ex){

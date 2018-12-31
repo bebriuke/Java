@@ -5,7 +5,7 @@
  */
 package crudmem;
 
-import duomenys.Contacts;
+import duomenys.Contact;
 import duomenys.EMF;
 import duomenys.Person;
 import java.io.IOException;
@@ -58,17 +58,19 @@ public class EditContact extends HttpServlet {
        
         EntityManager em = EMF.getEntityManager();
         EntityTransaction tx = EMF.getTransaction(em);
-        Contacts c;
+        Contact c;
             if (ida != null) {
-                c = em.find(Contacts.class, ida);    
+                c = em.find(Contact.class, ida);    
                 c.setType(type);
-                c.setAddres(contact); 
+                c.setContact(contact); 
                 em.persist(c); // nebūtinas, hipernatas pats surašys
                 
             } else {
                 Person p = em.find(Person.class, id);
-                c = new Contacts(type, contact);  
-                c.setP(p);
+                c = new Contact(); 
+                c.setContact(contact);
+                c.setType(type);
+                c.setPerson(p);
                 em.persist(c);
             }
             EMF.commitTransaction(tx);

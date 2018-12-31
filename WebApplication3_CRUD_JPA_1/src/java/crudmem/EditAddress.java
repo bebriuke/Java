@@ -5,9 +5,12 @@
  */
 package crudmem;
 
-import duomenys.Contact;
+import duomenys.Address;
 import duomenys.EMF;
+import duomenys.Person;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
@@ -20,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jurate Valatkevicien
  */
-@WebServlet(name = "deleteContact", urlPatterns = {"/deleteContact"})
-public class DeleteContact extends HttpServlet {
+@WebServlet(name = "EditAddress", urlPatterns = {"/EditAddress"})
+public class EditAddress extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,6 +37,7 @@ public class DeleteContact extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String idString = request.getParameter("id");
         Integer id = null;
@@ -49,19 +53,34 @@ public class DeleteContact extends HttpServlet {
         } catch (Exception ex) {
         }
         
+        
+        
+        String adresas = request.getParameter("address");
+        String miestas = request.getParameter("city");
+        String pastoKodas = request.getParameter("pk");
+       
         EntityManager em = EMF.getEntityManager();
-        try {    
-            EntityTransaction tx = EMF.getTransaction(em);
-            Contact c = em.find(Contact.class, ida);
-            em.remove(c);
+        EntityTransaction tx = EMF.getTransaction(em);
+        Address a;
+            if (ida != null) {
+                a = em.find(Address.class, ida);    
+                a.setAddress(adresas);
+                a.setCity(miestas);
+                a.setPostalCode(pastoKodas);           
+                em.persist(a); // nebūtinas, hipernatas pats surašys
+                
+            } else {
+                Person p = em.find(Person.class, id);
+                a = new Address(adresas, miestas, pastoKodas);  
+                a.setP(p);
+                em.persist(a);
+            }
             EMF.commitTransaction(tx);
-        } catch (Exception ex){
-            throw ex;
-        }
-        finally{
             EMF.returnEntityManager(em);
-        }
-        response.sendRedirect("contact.jsp?id="+id);
+        
+        
+        
+        response.sendRedirect("adress.jsp?id="+id);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -14,11 +14,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "addresses")
+@Table(name = "contacts")
 @NamedQueries({
-    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a")
+    @NamedQuery(name = "Contact.findAll", query = "SELECT c FROM Contact c")
 })
-public class Address implements Serializable {
+public class Contact implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -26,19 +26,16 @@ public class Address implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Column(name = "type")
+    private String type;
     @Basic(optional = false)
-    @Column(name = "address")
-    private String address;
-    @Basic(optional = false)
-    @Column(name = "city")
-    private String city;
-    @Column(name = "postal_code")
-    private String postalCode;
+    @Column(name = "contact")
+    private String contact;
     @JoinColumn(name = "persons_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Person person;
 
-    public Address() {
+    public Contact() {
     }
 
     public Integer getId() {
@@ -49,28 +46,20 @@ public class Address implements Serializable {
         this.id = id;
     }
 
-    public String getAddress() {
-        return address;
+    public String getType() {
+        return type;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getCity() {
-        return city;
+    public String getContact() {
+        return contact;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     public Person getPerson() {
@@ -93,16 +82,16 @@ public class Address implements Serializable {
         if (object == null) {
             return false;
         }
-        if (!(object instanceof Address)) {
+        if (!(object instanceof Contact)) {
             return false;
         }
-        Address other = (Address) object;
+        Contact other = (Contact) object;
         return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override
     public String toString() {
-        return "Address{" + "id=" + id + ", address=" + address + ", city=" + city + ", postalCode=" + postalCode + '}';
+        return "Contact{" + "id=" + id + ", type=" + type + ", contact=" + contact + '}';
     }
 
 }

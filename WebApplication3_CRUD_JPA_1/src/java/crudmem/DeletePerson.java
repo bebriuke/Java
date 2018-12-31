@@ -1,36 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package crudmem;
 
-import duomenys.Contact;
 import duomenys.EMF;
+import duomenys.Person;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  *
- * @author Jurate Valatkevicien
+ * @author Aleksandras Novikovas <Aleksandras.Novikovas@gmail.com>
  */
-@WebServlet(name = "deleteContact", urlPatterns = {"/deleteContact"})
-public class DeleteContact extends HttpServlet {
+@WebServlet(name = "DeletePerson", urlPatterns = {"/delete"})
+public class DeletePerson extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
+     *
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,19 +40,14 @@ public class DeleteContact extends HttpServlet {
             id = new Integer(idString);
         } catch (Exception ex) {
         }
+        ////
         
-        String idStringa = request.getParameter("ida");
-        Integer ida = null;
-        try {
-            ida = new Integer(idStringa);
-        } catch (Exception ex) {
-        }
-        
-        EntityManager em = EMF.getEntityManager();
+        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("WebApplication3_CRUD_JPAPU");
+        EntityManager em = EMF.getEntityManager(); //atidarom
         try {    
             EntityTransaction tx = EMF.getTransaction(em);
-            Contact c = em.find(Contact.class, ida);
-            em.remove(c);
+            Person p = em.find(Person.class, id);
+            em.remove(p);
             EMF.commitTransaction(tx);
         } catch (Exception ex){
             throw ex;
@@ -61,17 +55,18 @@ public class DeleteContact extends HttpServlet {
         finally{
             EMF.returnEntityManager(em);
         }
-        response.sendRedirect("contact.jsp?id="+id);
+        response.sendRedirect("index.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
+     *
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -82,10 +77,11 @@ public class DeleteContact extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
+     *
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

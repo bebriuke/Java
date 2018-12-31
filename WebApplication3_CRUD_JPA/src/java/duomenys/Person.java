@@ -1,74 +1,68 @@
 package duomenys;
 
-
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.json.bind.annotation.JsonbTransient;
+import javax.json.bind.annotation.JsonbTypeAdapter;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Jurate Valatkevicien
- */
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import util.JsonDateSerializer;
 
 @Entity
-@Table(name="persons")
-public class Person {
-    
+@Table(name = "persons")
+@NamedQueries({
+    @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p")
+})
+public class Person implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
     private Integer id;
-    @Column(name="first_name")
+    @Basic(optional = false)
+    @Column(name = "first_name")
     private String firstName;
-    @Column(name="last_name")
+    @Basic(optional = false)
+    @Column(name = "last_name")
     private String lastName;
-    @Column(name="birth_date")
+    @Column(name = "birth_date")
+    @Temporal(TemporalType.DATE)
+    @JsonbTypeAdapter(JsonDateSerializer.class)
     private Date birthDate;
-    //jeigu sutampa, @Column nereikia
+    @Column(name = "salary")
     private BigDecimal salary;
-    @OneToMany(mappedBy = "p")
+    @JsonbTransient
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
     private List<Address> addresses;
-    @OneToMany(mappedBy = "p")
-    private List<Contacts> contacts; //???
-    //kintamasis, kurio nėra duomenų bazėje
-   // @Transient
-   // String test;
+    @JsonbTransient
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
+    private List<Contact> contacts;
 
     public Person() {
-        addresses = new ArrayList<>();
-        contacts = new ArrayList<>();
-    }
-
-    
-    public Person(String firstName, String lastName, Date birthDate, BigDecimal salary) {
-        //id = 17; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.salary = salary;
-        addresses = new ArrayList<>();
-        contacts = new ArrayList<>();
-        
     }
 
     public Integer getId() {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -101,7 +95,7 @@ public class Person {
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
-    
+
     public List<Address> getAddresses() {
         return addresses;
     }
@@ -110,45 +104,36 @@ public class Person {
         this.addresses = addresses;
     }
 
-    public List<Contacts> getContacts() {
+    public List<Contact> getContacts() {
         return contacts;
     }
 
-    public void setContacts(List<Contacts> contacts) {
+    public void setContacts(List<Contact> contacts) {
         this.contacts = contacts;
     }
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null) {
+            return false;
+        }
+        if (!(object instanceof Person)) {
+            return false;
+        }
+        Person other = (Person) object;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
+    }
 
     @Override
     public String toString() {
-        return "Person{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthDate=" + birthDate + ", salary=" + salary  + '}';
+        return "Person{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthDate=" + birthDate + ", salary=" + salary + '}';
     }
-    
-    public static Address getAddressById(Integer id, List <Address> list) {
-        if (id == null) {
-            return null;
-        }
-        for (Address p : list) {
-            if (id.equals(p.getId())) {
-                return p;
-            }
-        }
-        return null;
-    }
-    
-    
-    public static Contacts getContactById(Integer id, List <Contacts> list) {
-        if (id == null) {
-            return null;
-        }
-        for (Contacts p : list) {
-            if (id.equals(p.getId())) {
-                return p;
-            }
-        }
-        return null;
-    }
-    
-    
+
 }

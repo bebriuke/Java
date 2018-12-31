@@ -39,7 +39,8 @@ public class EMF {
         }
     }
 
-    public static EntityTransaction getTransaction(EntityManager em) {
+    public static EntityTransaction getTransaction(EntityManager em)
+    {
         if (em != null) {
             EntityTransaction tx = em.getTransaction();
             if (!tx.isActive()) {
@@ -51,7 +52,8 @@ public class EMF {
         }
     }
 
-    public static void commitTransaction(EntityTransaction tx) {
+    public static void commitTransaction(EntityTransaction tx)
+    {
         if (tx != null) {
             if (tx.isActive()) {
                 tx.commit();

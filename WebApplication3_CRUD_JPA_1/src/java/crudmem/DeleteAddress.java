@@ -5,9 +5,11 @@
  */
 package crudmem;
 
-import duomenys.Contact;
+import duomenys.Address;
 import duomenys.EMF;
+import duomenys.Person;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
@@ -16,12 +18,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  *
  * @author Jurate Valatkevicien
  */
-@WebServlet(name = "deleteContact", urlPatterns = {"/deleteContact"})
-public class DeleteContact extends HttpServlet {
+@WebServlet(name = "DeleteAddress", urlPatterns = {"/deleteAddress"})
+public class DeleteAddress extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,8 +55,8 @@ public class DeleteContact extends HttpServlet {
         EntityManager em = EMF.getEntityManager();
         try {    
             EntityTransaction tx = EMF.getTransaction(em);
-            Contact c = em.find(Contact.class, ida);
-            em.remove(c);
+            Address a = em.find(Address.class, ida);
+            em.remove(a);
             EMF.commitTransaction(tx);
         } catch (Exception ex){
             throw ex;
@@ -61,7 +64,7 @@ public class DeleteContact extends HttpServlet {
         finally{
             EMF.returnEntityManager(em);
         }
-        response.sendRedirect("contact.jsp?id="+id);
+        response.sendRedirect("adress.jsp?id="+id);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
