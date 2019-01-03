@@ -1,4 +1,4 @@
-package rest;
+package lt.bit.rest;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,17 +14,16 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import duomenys.Address;
-import duomenys.Contact;
-import duomenys.EMF;
-import duomenys.Person;
+import lt.bit.db.Contact;
+import lt.bit.db.EMF;
+import lt.bit.db.Person;
 
-@Path("persons/{persons_id}/contacts")
+@Path("person/{personId}/contact")
 public class ContactREST {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Contact> getAll(@Context HttpServletRequest request, @PathParam("persons_id") Integer personId) {
+    public List<Contact> getAll(@Context HttpServletRequest request, @PathParam("personId") Integer personId) {
         if (personId == null) {
             return null;
         }
@@ -39,7 +38,7 @@ public class ContactREST {
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Contact getOne(@Context HttpServletRequest request, @PathParam("persons_id") Integer personId, @PathParam("id") Integer id) {
+    public Contact getOne(@Context HttpServletRequest request, @PathParam("personId") Integer personId, @PathParam("id") Integer id) {
         if (personId == null) {
             return null;
         }
@@ -58,7 +57,7 @@ public class ContactREST {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Contact add(@Context HttpServletRequest request, @PathParam("persons_id") Integer personId, Contact c) {
+    public Contact add(@Context HttpServletRequest request, @PathParam("personId") Integer personId, Contact c) {
         if (personId == null) {
             return null;
         }
@@ -87,7 +86,7 @@ public class ContactREST {
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Contact update(@Context HttpServletRequest request, @PathParam("persons_id") Integer personId, @PathParam("id") Integer id, Contact c) {
+    public Contact update(@Context HttpServletRequest request, @PathParam("personId") Integer personId, @PathParam("id") Integer id, Contact c) {
         if (personId == null) {
             return null;
         }
@@ -114,7 +113,7 @@ public class ContactREST {
     @DELETE
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Contact delete(@Context HttpServletRequest request, @PathParam("personsi_id") Integer personId, @PathParam("id") Integer id) {
+    public Contact delete(@Context HttpServletRequest request, @PathParam("personId") Integer personId, @PathParam("id") Integer id) {
         if (personId == null) {
             return null;
         }

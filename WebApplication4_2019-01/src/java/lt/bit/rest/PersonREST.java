@@ -1,4 +1,4 @@
-package rest;
+package lt.bit.rest;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -15,10 +15,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import duomenys.EMF;
-import duomenys.Person;
+import lt.bit.db.EMF;
+import lt.bit.db.Person;
 
-@Path("persons")
+@Path("person")
 public class PersonREST {
 
     @GET

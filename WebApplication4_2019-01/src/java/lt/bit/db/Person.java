@@ -1,4 +1,4 @@
-package duomenys;
+package lt.bit.db;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -19,7 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import util.JsonDateSerializer;
+import lt.bit.util.JsonDateSerializer;
 
 @Entity
 @Table(name = "persons")
@@ -47,10 +47,10 @@ public class Person implements Serializable {
     @Column(name = "salary")
     private BigDecimal salary;
     @JsonbTransient
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persons")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
     private List<Address> addresses;
     @JsonbTransient
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persons")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
     private List<Contact> contacts;
 
     public Person() {

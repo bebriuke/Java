@@ -19,12 +19,12 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 
-@Path("person/{personId}/address")
+@Path("persons/{persons_id}/addresses")
 public class AddressREST {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Address> getAll(@Context HttpServletRequest request, @PathParam("personId") Integer personId) {
+    public List<Address> getAll(@Context HttpServletRequest request, @PathParam("person_id") Integer personId) {
         if (personId == null) {
             return null;
         }
@@ -39,7 +39,7 @@ public class AddressREST {
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Address getOne(@Context HttpServletRequest request, @PathParam("personId") Integer personId, @PathParam("id") Integer id) {
+    public Address getOne(@Context HttpServletRequest request, @PathParam("persons_id") Integer personId, @PathParam("id") Integer id) {
         if (personId == null) {
             return null;
         }
@@ -58,7 +58,7 @@ public class AddressREST {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Address add(@Context HttpServletRequest request, @PathParam("personId") Integer personId, Address a) {
+    public Address add(@Context HttpServletRequest request, @PathParam("persons_id") Integer personId, Address a) {
         if (personId == null) {
             return null;
         }
@@ -87,7 +87,7 @@ public class AddressREST {
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Address update(@Context HttpServletRequest request, @PathParam("personId") Integer personId, @PathParam("id") Integer id, Address a) {
+    public Address update(@Context HttpServletRequest request, @PathParam("persons_id") Integer personId, @PathParam("id") Integer id, Address a) {
         if (personId == null) {
             return null;
         }
@@ -115,7 +115,7 @@ public class AddressREST {
     @DELETE
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Address delete(@Context HttpServletRequest request, @PathParam("personId") Integer personId, @PathParam("id") Integer id) {
+    public Address delete(@Context HttpServletRequest request, @PathParam("persons_id") Integer personId, @PathParam("id") Integer id) {
         if (personId == null) {
             return null;
         }
