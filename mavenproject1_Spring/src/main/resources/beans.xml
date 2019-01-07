@@ -5,5 +5,30 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 ">
     <bean id="skrituliukas" class="lt.bit.mavenproject1_spring.Apskritimas"></bean>
-    <bean id="staciakampiukas" class="lt.bit.mavenproject1_spring.Staciakampis"></bean>
+    <bean id="staciakampiukas0" class="lt.bit.mavenproject1_spring.Staciakampis"></bean>
+    <bean id="staciakampiukas1" class="lt.bit.mavenproject1_spring.Staciakampis" scope="prototype"><!-- standartinis scope singleton(kuria vienintelį objektą) -->
+        <property name="aukstis" value="12"></property>
+        <property name="plotis" value="18.5"/>
+        <property name="kampas" ref="vienetas"/>
+        
+    </bean>
+    
+    <bean id="staciakampiukas2" class="lt.bit.mavenproject1_spring.Staciakampis">
+        <constructor-arg name="kampas">
+            <bean class="lt.bit.mavenproject1_spring.Taskas">
+                <constructor-arg value="27"/>
+                <constructor-arg value="75"/>
+            </bean>
+        </constructor-arg>
+            
+        <constructor-arg value="5"/>
+        <constructor-arg value="25"/>
+        <property name="aukstis" value="100"/>
+            
+    </bean>
+    <bean id="vienetas" class="lt.bit.mavenproject1_spring.Taskas" > <!-- čia singleton, todėl kuriasmas taškas bus (31, 1) -->
+        <constructor-arg name="x" value="1"/> <!-- su vienu parametru TAskas konstruktorius neveiks-->
+        <constructor-arg name="y" value="1"/> <!-- name rašyti kaip ir nereikia, priskiria pagal argumentų eiliškumą-->
+    </bean>
+    
 </beans>

@@ -15,6 +15,7 @@ public class Staciakampis implements Figura{
     private float plotis;
 
     public Staciakampis() {
+        System.out.println("Kuriam staciakampį");
         this.kampas = new Taskas();
         this.aukstis = 1;
         this.plotis = 1;
