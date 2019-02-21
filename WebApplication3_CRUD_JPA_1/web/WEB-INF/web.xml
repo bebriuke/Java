@@ -11,6 +11,7 @@
         <filter-name>LoggerFilter</filter-name>
         <filter-class>filtras.LoggerFilter</filter-class>
     </filter>
+    
     <filter-mapping>
         <filter-name>LoggerFilter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -19,10 +20,11 @@
         <servlet-class>crudmem.EditPerson</servlet-class>
         <servlet-name>EditPerson</servlet-name>
     </servlet>
+    <!--
     <servlet-mapping>
         <servlet-name>EditPerson</servlet-name>
         <url-pattern>/edit</url-pattern>
     </servlet-mapping>
     <srvlet/>
-  
+  -->
 </web-app>
