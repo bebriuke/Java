@@ -10,7 +10,7 @@ import javax.persistence.PersistenceException;
 
 public class EMF {
 
-    private static final String PERSISTENCE_UNIT_NAME = "WebApplication3_CRUD_JPAPU";
+    private static final String PERSISTENCE_UNIT_NAME = "WebApplication3_CRUD_JPA_1PU";
     private static final Logger log = Logger.getLogger(EMF.class.getName());
 
     protected static EntityManagerFactory emf;
